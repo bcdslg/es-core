@@ -1,0 +1,22 @@
+# 暴露所有的端点，注意要引入spring-boot-starter-actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    #  现在每个端点都要单独配置，而且要显示详细信息的话，需要额外配置show-details
+    health:
+      enabled: true
+      show-details: always
+
+server:
+  port: 8080
+
+spring:
+  data:
+    elasticsearch:
+#      cluster-name: application    #这句注释掉就可以了，好像和下面的cluster-nodes 冲突了。。但是下面的不配置启动会报错的。
+      cluster-nodes: 127.0.0.1:9300
+      repositories:
+        enabled: true #开启本地存储
